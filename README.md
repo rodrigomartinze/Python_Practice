@@ -6,3 +6,6 @@ I think NumPy is related to all math algorithms. It makes math operations easier
 accuracy_scores.mean()
 accuracy_scores.argmax()
 ```
+
+## Pandas
+Pandas help us to manipulate, orginize and create dataframes and use it information like excel
