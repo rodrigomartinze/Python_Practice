@@ -3,7 +3,7 @@ import pandas as pd
 data = {
     "model": ["Chat-GPT", "Gemini", "Copilot", "Claude"],
     "accuracy": [0.78, 0.87, 0.91, 0.99],
-    "company": ["Open-AI", "Google", "Microsoft", "Antrophic"],
+    "company": ["Open-AI", "Google", "Microsoft", "Anthropic"],
 }
 
 df = pd.DataFrame(data)
