@@ -9,3 +9,11 @@ accuracy_scores.argmax()
 
 ## Pandas
 Pandas help us to manipulate, orginize and create dataframes and use it information like excel
+'''python
+data = {
+    "model": ["Chat-GPT", "Gemini", "Copilot", "Claude"],
+    "accuracy": [0.78, 0.87, 0.91, 0.99],
+    "company": ["Open-AI", "Google", "Microsoft", "Anthropic"],
+}
+
+'''
