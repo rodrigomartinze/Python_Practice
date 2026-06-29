@@ -9,6 +9,9 @@ accuracy_scores.argmax()
 
 ## Pandas
 Pandas help us to manipulate, orginize and create dataframes and use it information like excel
+
+Pandas DataFrame lets you create tables easily, while a NumPy array is just like a list that can contain numbers and perform math operations. NumPy is simpler and more specific, while Pandas is more complete — similar to a dictionary but displayed as a table.
+
 '''python
 data = {
     "model": ["Chat-GPT", "Gemini", "Copilot", "Claude"],
