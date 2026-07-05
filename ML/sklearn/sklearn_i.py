@@ -8,6 +8,8 @@ exam_score = np.array([45, 52, 61, 68, 74, 79, 83, 88, 92, 97])
 model = LinearRegression()
 model.fit(hours_studied, exam_score)
 
-prediction = model.predict([[10]])
+hours = int(input("How many hours do you daily study?"))
+
+prediction = model.predict([[hours]])
 final_score = min(prediction[0], 100)
-print(f"Predicted score after 10 hours: {final_score:.2f}")
+print(f"Predicted score after {hours} hours: {final_score:.2f}")
