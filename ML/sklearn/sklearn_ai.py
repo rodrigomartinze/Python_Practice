@@ -19,6 +19,8 @@ questions = [
     {"question": "What is 2 ** 3?", "answer": "8"},
 ]
 
+selected = random.sample(questions, 3)
+
 prediction = model.predict([[hours]])
 final_score = min(prediction[0], 100)
 print(f"Predicted score after {hours} hours: {final_score:.2f}")
