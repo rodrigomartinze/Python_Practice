@@ -11,6 +11,14 @@ model.fit(hours_studied, exam_score)
 
 hours = int(input("How many hours do you daily study?"))
 
+questions = [
+    {"question": "What is 5 + 3?", "answer": "8"},
+    {"question": "What is 10 / 2?", "answer": "5"},
+    {"question": "What is 3 * 4?", "answer": "12"},
+    {"question": "What is 15 - 7?", "answer": "8"},
+    {"question": "What is 2 ** 3?", "answer": "8"},
+]
+
 prediction = model.predict([[hours]])
 final_score = min(prediction[0], 100)
 print(f"Predicted score after {hours} hours: {final_score:.2f}")
