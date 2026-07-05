@@ -20,6 +20,7 @@ questions = [
 ]
 
 selected = random.sample(questions, 3)
+correct = 0
 
 prediction = model.predict([[hours]])
 final_score = min(prediction[0], 100)
