@@ -7,9 +7,6 @@ Built from scratch, concept by concept, with real projects at every step.
 
 ## Roadmap
 
-
-| Concept          | Status | ---
- ---
  Variables & Lists | ✅ |
  For Loops         | ✅ |
  Functions         | ✅ |
