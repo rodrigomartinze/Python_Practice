@@ -1,22 +1,104 @@
-﻿# Python_Practice
+﻿# Python for AI — Learning Path
 
-## NumPy
-I think NumPy is related to all math algorithms. It makes math operations easier and helps you simplify your code. It gives you functions that do complex math in just one line of code. It's a simple library, but it can be used in real projects.
+A hands-on Python learning journey focused on **Machine Learning and AI development**.
+Built from scratch, concept by concept, with real projects at every step.
+
+---
+
+## Roadmap
+
+
+| Concept          | Status | ---
+ ---
+ Variables & Lists | ✅ |
+ For Loops         | ✅ |
+ Functions         | ✅ |
+ Dictionaries      | ✅ |
+ NumPy             | ✅ |
+ Pandas            | ✅ |
+ Matplotlib        | ✅ |
+ Scikit-learn      | ✅ |
+ ---
+
+## 📦 Libraries Used
+
+- **NumPy** — math operations on arrays
+- **Pandas** — data manipulation and DataFrames
+- **Matplotlib** — data visualization
+- **Scikit-learn** — machine learning models
+
+---
+
+## 🚀 Projects
+
+### 🔢 Model Accuracy Analyzer
+`numpy/model_accuracy_analyzer.py`
+
+Analyzes AI model accuracy scores using NumPy arrays.
+- Calculates mean, max, and min accuracy
+- Counts models above a threshold
+- Finds the best model using `argmax()`
+
 ```python
-accuracy_scores.mean()
-accuracy_scores.argmax()
+accuracy_scores = np.array([0.87, 0.98, 0.43, 0.67, 0.77, 0.89])
+print(f"Best model: {models_name[np.argmax(accuracy_scores)]}")
 ```
 
-## Pandas
-Pandas help us to manipulate, orginize and create dataframes and use it information like excel
+---
 
-Pandas DataFrame lets you create tables easily, while a NumPy array is just like a list that can contain numbers and perform math operations. NumPy is simpler and more specific, while Pandas is more complete — similar to a dictionary but displayed as a table.
+### 📊 AI Models Dashboard
+`pandas/ai_dashboard.py`
 
-'''python
-data = {
-    "model": ["Chat-GPT", "Gemini", "Copilot", "Claude"],
-    "accuracy": [0.78, 0.87, 0.91, 0.99],
-    "company": ["Open-AI", "Google", "Microsoft", "Anthropic"],
-}
+Explores AI model data using Pandas DataFrames.
+- Filters models by company
+- Sorts by accuracy
+- Finds the best performing model
 
-'''
+```python
+df[df["accuracy"] > 0.90]                        # filter high performers
+df.sort_values("accuracy", ascending=False)       # sort best to worst
+```
+
+---
+
+### 📈 Matplotlib Performance Dashboard
+`matplotlib/matplotlib_dashboard.py`
+
+Visualizes AI model data with two charts:
+- **Bar chart** — compares model accuracies
+- **Line graph** — shows training progress over epochs
+
+---
+
+### 🤖 Student Exam Score Predictor
+`sklearn/sklearn_ai.py`
+
+A Machine Learning model that predicts a student's exam score based on:
+- Daily study hours (supports `1h` or `90m` format)
+- Math quiz score (10 random questions)
+- Penalty rules for very low quiz scores
+
+```python
+model = LinearRegression()
+model.fit(X, exam_score)
+prediction = model.predict([[hours, quiz_score]])
+```
+
+---
+
+## ⚙️ Setup
+
+```bash
+# Clone the repo
+git clone https://github.com/rodrigomartinze/Python_Practice.git
+
+# Install dependencies
+pip install numpy pandas matplotlib scikit-learn
+```
+
+---
+
+## 👨‍💻 About
+
+Built as part of a personal AI development learning path.
+Goal: become an AI Developer with a focus on Machine Learning and language models.
