@@ -14,3 +14,6 @@ models_df = {
 }
 
 models_df = pd.DataFrame(models_df)
+text_df = models_df.to_string()
+summary = f"Here is a dataset of AI models: \n {text_df} "
+print(summary)
