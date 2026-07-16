@@ -26,4 +26,11 @@ Best model: {best_model}
 Average accuracy: {df["accuracy"].mean()}
 """
 
-print(summary)
+client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
+
+response = client.chat.completions.create(
+    model="llama-3.3-70b-versatile",  # ← updated model name!
+    messages=[{"role": "user", "content": "Analize this AI models: " + summary}],
+)
+
+print(response.choices[0].message.content)
