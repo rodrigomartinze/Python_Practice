@@ -22,4 +22,16 @@ models_df = {
 }
 
 df = pd.DataFrame(models_df)
-print(df)
+best_index = df["accuracy"].idxmax()
+best_model = df.loc[best_index, "model"]
+
+summary = f"""
+
+Here is a dataset of AI models:
+{df}
+
+Best model: {best_model}
+Average accuracy: {df["accuracy"].mean()}
+"""
+
+print(summary)

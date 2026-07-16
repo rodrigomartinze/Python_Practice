@@ -13,7 +13,17 @@ models_df = {
     "parameters_billions": [1800, 540, 137, 350, 70],
 }
 
-models_df = pd.DataFrame(models_df)
-text_df = models_df.to_string()
-summary = f"Here is a dataset of AI models: \n {text_df} "
+df = pd.DataFrame(models_df)
+best_index = df["accuracy"].idxmax()
+best_model = df.loc[best_index, "model"]
+
+summary = f"""
+
+Here is a dataset of AI models:
+{df}
+
+Best model: {best_model}
+Average accuracy: {df["accuracy"].mean()}
+"""
+
 print(summary)
