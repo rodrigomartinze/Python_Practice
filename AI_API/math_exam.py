@@ -3,6 +3,7 @@ import json
 import ast
 from groq import Groq
 from dotenv import load_dotenv
+import pandas as pd
 
 load_dotenv()
 
@@ -40,3 +41,12 @@ for q in questions:
         
 score = correct / len(questions)
 print(f"Your score is {score:.0%}")
+
+df_results = pd.DataFrame(results)
+
+summary = f"""
+
+Here are your results {name}:
+{df_results}
+"""
+print(summary)
