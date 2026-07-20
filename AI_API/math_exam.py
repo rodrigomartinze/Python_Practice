@@ -1,11 +1,10 @@
-
 import os
+import json
+import ast
 from groq import Groq
 from dotenv import load_dotenv
-import json
-load_dotenv()
-import ast
 
+load_dotenv()
 
 client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
@@ -38,3 +37,6 @@ for q in questions:
     else:
 
         print("Incorrect")
+        
+score = correct / len(questions)
+print(f"Your score is {score:.0%}")
