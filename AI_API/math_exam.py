@@ -5,6 +5,11 @@ from groq import Groq
 from dotenv import load_dotenv
 import pandas as pd
 
+from openpyxl import Workbook
+from openpyxl.styles import Font, PatternFill, Alignment
+from openpyxl.utils import get_column_letter
+from datetime import datetime
+
 load_dotenv()
 
 client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
@@ -65,5 +70,65 @@ feedback = client.chat.completions.create(
 )
 
 print(feedback.choices[0].message.content)
+filename=f"{name}_results.csv"
+df_results.to_csv(filename, index=False) 
 
-df_results.to_csv(f"{name}_results.csv", index=False) 
+
+#EXPORT RESULTS ASS EXCEL FILE
+
+def export_to_excel(name, grade, difficulty, score, df_results, feedback_text, filename):
+    wb = Workbook()
+
+    # --- Sheet 1: Summary ---
+    ws1 = wb.active
+    ws1.title = "Summary"
+    ws1["A1"] = "Name"
+    ws1["B1"] = name
+    ws1["A2"] = "Grade"
+    ws1["B2"] = grade
+    ws1["A3"] = "Difficulty"
+    ws1["B3"] = difficulty
+    ws1["A4"] = "Score"
+    ws1["B4"] = f"{score:.0%}"
+    ws1["A5"] = "Date"
+    ws1["B5"] = datetime.now().strftime("%Y-%m-%d %H:%M")
+
+    for row in range(1, 6):
+        ws1[f"A{row}"].font = Font(bold=True)
+
+    ws1["A7"] = "Feedback"
+    ws1["A7"].font = Font(bold=True)
+    ws1["A8"] = feedback_text
+    ws1["A8"].alignment = Alignment(wrap_text=True, vertical="top")
+    ws1.merge_cells("A8:E20")
+    ws1.column_dimensions["A"].width = 20
+    ws1.column_dimensions["B"].width = 20
+
+    # --- Sheet 2: Results ---
+    ws2 = wb.create_sheet("Results")
+    headers = ["Question", "Student Answer", "Correct Answer", "Correct?"]
+    colors = ["FF0000", "00FF00", "0000FF", "FFA500"]
+
+    for col, header in enumerate(headers, start=1):
+        cell = ws2.cell(row=1, column=col, value=header)
+        cell.font = Font(bold=True, color="FFFFFF")
+        cell.fill = PatternFill(start_color=colors[col - 1], end_color=colors[col - 1], fill_type="solid")
+
+    green = PatternFill(start_color="C6EFCE", end_color="C6EFCE", fill_type="solid")
+    red = PatternFill(start_color="FFC7CE", end_color="FFC7CE", fill_type="solid")
+
+    for row_idx, r in enumerate(df_results.itertuples(index=False), start=2):
+        ws2.cell(row=row_idx, column=1, value=r.question)
+        ws2.cell(row=row_idx, column=2, value=r.student_answer)
+        ws2.cell(row=row_idx, column=3, value=r.correct_answer)
+        result_cell = ws2.cell(row=row_idx, column=4, value="Yes" if r.is_correct else "No")
+        result_cell.fill = green if r.is_correct else red
+
+    widths = [50, 20, 20, 12]
+    for i, w in enumerate(widths, start=1):
+        ws2.column_dimensions[get_column_letter(i)].width = w
+
+    wb.save(filename)
+    print(f"\nResults saved to {filename}")
+
+export_to_excel(name, grade, difficulty, score, df_results, feedback.choices[0].message.content, f"{name}_results.xlsx")
