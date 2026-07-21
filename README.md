@@ -94,6 +94,10 @@ My most complete project so far. The AI generates personalized math questions ba
 # Student answers them
 # AI gives personalized feedback
 ```
+```python
+df_results.to_csv(f"{name}_results.csv", index=False) 
+#This line saves the DataFrame into a csv file
+```
 
 ---
 
