@@ -11,7 +11,9 @@ client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
 name = input("What's your name? ")
 grade = input("What's your grade level? ")
-difficulty = input("Choose your difficulty: easy, medium or hard:")
+difficulty = input("Choose your difficulty: easy, medium or hard: ")
+while difficulty not in ["easy", "medium", "hard"]:
+    difficulty = input("Please type easy, medium or hard: ")
 
 
 
@@ -38,7 +40,6 @@ for q in questions:
         print("Correct")
         correct += 1
     else:
-
         print("Incorrect")
         
 score = correct / len(questions)
