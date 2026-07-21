@@ -1,28 +1,33 @@
-﻿# Python for AI — Learning Path
+﻿# 🐍 Python for AI — Learning Path
 
-A hands-on Python learning journey focused on **Machine Learning and AI development**.
+A hands-on Python learning journey focused on Machine Learning and AI development.
 Built from scratch, concept by concept, with real projects at every step.
 
 ---
 
-## Roadmap
+## 🗺️ Roadmap
 
- Variables & Lists | ✅ |
- For Loops         | ✅ |
- Functions         | ✅ |
- Dictionaries      | ✅ |
- NumPy             | ✅ |
- Pandas            | ✅ |
- Matplotlib        | ✅ |
- Scikit-learn      | ✅ |
- ---
+| Concept | Status |
+|---|---|
+| Variables & Lists | ✅ |
+| For Loops | ✅ |
+| Functions | ✅ |
+| Dictionaries | ✅ |
+| NumPy | ✅ |
+| Pandas | ✅ |
+| Matplotlib | ✅ |
+| Scikit-learn | ✅ |
+| Groq AI API | ✅ |
+
+---
 
 ## 📦 Libraries Used
 
-- **NumPy** — math operations on arrays
-- **Pandas** — data manipulation and DataFrames
-- **Matplotlib** — data visualization
-- **Scikit-learn** — machine learning models
+- **NumPy** — math on arrays
+- **Pandas** — tables and DataFrames
+- **Matplotlib** — charts and graphs
+- **Scikit-learn** — ML models
+- **Groq** — AI API integration
 
 ---
 
@@ -31,10 +36,7 @@ Built from scratch, concept by concept, with real projects at every step.
 ### 🔢 Model Accuracy Analyzer
 `numpy/model_accuracy_analyzer.py`
 
-Analyzes AI model accuracy scores using NumPy arrays.
-- Calculates mean, max, and min accuracy
-- Counts models above a threshold
-- Finds the best model using `argmax()`
+One of my first real projects. Takes a list of AI model accuracy scores and finds the best one using NumPy.
 
 ```python
 accuracy_scores = np.array([0.87, 0.98, 0.43, 0.67, 0.77, 0.89])
@@ -46,14 +48,11 @@ print(f"Best model: {models_name[np.argmax(accuracy_scores)]}")
 ### 📊 AI Models Dashboard
 `pandas/ai_dashboard.py`
 
-Explores AI model data using Pandas DataFrames.
-- Filters models by company
-- Sorts by accuracy
-- Finds the best performing model
+My first time working with DataFrames. I learned how to filter, sort, and explore data — the same way data scientists do it.
 
 ```python
-df[df["accuracy"] > 0.90]                        # filter high performers
-df.sort_values("accuracy", ascending=False)       # sort best to worst
+df[df["accuracy"] > 0.90]
+df.sort_values("accuracy", ascending=False)
 ```
 
 ---
@@ -61,19 +60,14 @@ df.sort_values("accuracy", ascending=False)       # sort best to worst
 ### 📈 Matplotlib Performance Dashboard
 `matplotlib/matplotlib_dashboard.py`
 
-Visualizes AI model data with two charts:
-- **Bar chart** — compares model accuracies
-- **Line graph** — shows training progress over epochs
+Two charts in one file — a bar chart comparing model accuracies and a line graph showing training progress over epochs. First time I made data actually visual.
 
 ---
 
 ### 🤖 Student Exam Score Predictor
 `sklearn/sklearn_ai.py`
 
-A Machine Learning model that predicts a student's exam score based on:
-- Daily study hours (supports `1h` or `90m` format)
-- Math quiz score (10 random questions)
-- Penalty rules for very low quiz scores
+My first real ML model. It predicts a student's exam score based on study hours and quiz performance. Includes a math quiz and penalty rules for very low scores.
 
 ```python
 model = LinearRegression()
@@ -83,19 +77,40 @@ prediction = model.predict([[hours, quiz_score]])
 
 ---
 
+### 🧠 AI Data Analyzer
+`AI_API/data_analyzer.py`
+
+First project using a real AI API. Sends a Pandas DataFrame to Groq (Llama 3) and gets back a full analysis — topics, insights, and comparisons.
+
+---
+
+### 📝 AI Math Exam
+`AI_API/math_exam.py`
+
+My most complete project so far. The AI generates personalized math questions based on the student's grade level and difficulty choice. After the quiz, it analyzes the results and gives a personalized study guide.
+
+```python
+# AI generates questions based on grade + difficulty
+# Student answers them
+# AI gives personalized feedback
+```
+
+---
+
 ## ⚙️ Setup
 
 ```bash
-# Clone the repo
 git clone https://github.com/rodrigomartinze/Python_Practice.git
+pip install numpy pandas matplotlib scikit-learn groq python-dotenv
+```
 
-# Install dependencies
-pip install numpy pandas matplotlib scikit-learn
+Create a `.env` file in the `AI_API` folder:
+```
+GROQ_API_KEY=your-key-here
 ```
 
 ---
 
 ## 👨‍💻 About
 
-Built as part of a personal AI development learning path.
-Goal: become an AI Developer with a focus on Machine Learning and language models.
+I'm a high school student learning Python and AI from scratch with the goal of becoming an AI Developer. Every project here was built step by step, making mistakes and fixing them — that's how I actually learned.
