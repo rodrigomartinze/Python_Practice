@@ -11,6 +11,8 @@ client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
 name = input("What's your name? ")
 grade = input("What's your grade level? ")
+
+
 difficulty = input("Choose your difficulty: easy, medium or hard: ")
 while difficulty not in ["easy", "medium", "hard"]:
     difficulty = input("Please type easy, medium or hard: ")
@@ -21,7 +23,7 @@ response = client.chat.completions.create(
     model="llama-3.3-70b-versatile",
     messages=[{
         "role": "user", 
-        "content": f"Generate 10 math questions for a grade {grade} student, use a {difficulty} difficulty level . Return ONLY a JSON array like this: [{{'question': 'What is 2+2?', 'answer': '4'}}]. No extra text, just the JSON."
+        "content": f"Generate 10 math questions for a grade/level {grade} student, use a {difficulty} difficulty level . Return ONLY a JSON array like this: [{{'question': 'What is 2+2?', 'answer': '4'}}]. No extra text, just the JSON."
     }]
 )
 
