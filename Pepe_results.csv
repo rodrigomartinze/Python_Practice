@@ -1,0 +1,11 @@
+question,student_answer,correct_answer,is_correct
+"If I have 18 pencils and I give 7 to my friend, how many pencils do I have left?",,11,False
+"A basket contains 15 apples, if 3 apples are taken out, how many apples are left in the basket?",2,12,False
+"If it takes 5 buttons to make a picture and I want to make 4 pictures, how many buttons will I need?",2,20,False
+"If I have 12 crayons in a box and I add 4 more, how many crayons will I have now?",2,16,False
+"If a toy car track is 12 blocks long and I add 2 more blocks to it, how many blocks long will it be?",2,14,False
+"If I have 9 pennies in my pocket and I find 2 more, how many pennies will I have now?",2,11,False
+"If I have 16 stickers and I give 2 to my brother, how many stickers do I have left?",2,14,False
+"A bookshelf has 8 books on it, if 4 more books are added, how many books will the bookshelf have now?",2,12,False
+"If I have 15 marbles and I lose 3, how many marbles will I have left?",2,12,False
+"If it takes 6 pennies to buy a candy and I have 18 pennies, how many candies can I buy?",2,3,False
