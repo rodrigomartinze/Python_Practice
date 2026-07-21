@@ -50,3 +50,13 @@ Here are your results {name}:
 {df_results}
 """
 print(summary)
+
+feedback = client.chat.completions.create(
+    model="llama-3.3-70b-versatile",
+    messages=[{
+        "role": "user",
+        "content": f"A student named {name} in grade {grade} just took a math quiz. Using these results: {summary}, tell the student which topics they need to study and give them a personalized study guide about the topics they failed."
+    }]
+)
+
+print(feedback.choices[0].message.content)
