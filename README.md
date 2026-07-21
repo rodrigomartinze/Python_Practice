@@ -98,6 +98,8 @@ My most complete project so far. The AI generates personalized math questions ba
 df_results.to_csv(f"{name}_results.csv", index=False) 
 #This line saves the DataFrame into a csv file
 ```
+<img width="981" height="322" alt="image" src="https://github.com/user-attachments/assets/4a5dc554-bcfa-4123-ba49-9eb517d8671c" />
+
 
 ---
 
