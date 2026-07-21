@@ -65,3 +65,5 @@ feedback = client.chat.completions.create(
 )
 
 print(feedback.choices[0].message.content)
+
+df_results.to_csv(f"{name}_results.csv", index=False) 
