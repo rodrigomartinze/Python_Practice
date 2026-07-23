@@ -18,7 +18,7 @@ name = input("What's your name? ")
 grade = input("What's your grade level? ")
 
 
-difficulty = input("Please shoose your difficulty: easy, medium or hard: ")
+difficulty = input("Please choose your difficulty: easy, medium or hard: ")
 while difficulty not in ["easy", "medium", "hard"]:
     difficulty = input("Please type easy, medium or hard: ")
 
