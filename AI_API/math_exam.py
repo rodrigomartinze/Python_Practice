@@ -36,7 +36,13 @@ questions = ast.literal_eval(response.choices[0].message.content)
 correct = 0
 results = []
 for q in questions:
-    answer = input(q["question"] + " ")
+    while True:
+        answer = input(q["question"] + " ")
+        if not answer:
+            print("You have to type something")
+        else:
+            break
+        
     results.append({
         "question": q["question"],
         "student_answer": answer,
@@ -48,6 +54,8 @@ for q in questions:
         correct += 1
     else:
         print("Incorrect")
+
+
         
 score = correct / len(questions)
 print(f"Your score is {score:.0%}")
