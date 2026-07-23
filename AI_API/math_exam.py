@@ -1,6 +1,7 @@
 import os
 import json
 import ast
+import time
 from groq import Groq
 from dotenv import load_dotenv
 import pandas as pd
@@ -37,7 +38,10 @@ correct = 0
 results = []
 for q in questions:
     while True:
+        start = time.time()
         answer = input(q["question"] + " ")
+        end = time.time()
+        elapsed = end - start
         if not answer:
             print("You have to type something")
         else:
@@ -47,7 +51,8 @@ for q in questions:
         "question": q["question"],
         "student_answer": answer,
         "correct_answer": q["answer"],
-        "is_correct": answer == q["answer"]
+        "is_correct": answer == q["answer"],
+        "time_seconds": round(elapsed, 2)
     })
     if answer == q["answer"]:
         print("Correct")
