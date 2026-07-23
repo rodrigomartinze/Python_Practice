@@ -89,17 +89,30 @@ First project using a real AI API. Sends a Pandas DataFrame to Groq (Llama 3) an
 
 My most complete project so far. The AI generates personalized math questions based on the student's grade level and difficulty choice. After the quiz, it analyzes the results and gives a personalized study guide.
 
+**Features:**
+- AI generates 10 questions based on grade level and difficulty
+- Validates that the student can't submit empty answers
+- Tracks time spent on each question (useful for detecting cheating!)
+- Saves results to CSV and Excel with color-coded sheets
+- AI gives a personalized study guide based on wrong answers
+
 ```python
 # AI generates questions based on grade + difficulty
-# Student answers them
-# AI gives personalized feedback
-```
-```python
-df_results.to_csv(f"{name}_results.csv", index=False) 
-#This line saves the DataFrame into a csv file
-```
-<img width="981" height="322" alt="image" src="https://github.com/user-attachments/assets/4a5dc554-bcfa-4123-ba49-9eb517d8671c" />
+response = client.chat.completions.create(
+    model="llama-3.3-70b-versatile",
+    messages=[{"role": "user", "content": f"Generate 10 math questions for grade {grade} at {difficulty} level..."}]
+)
 
+# Timer tracks how long each answer takes
+start = time.time()
+answer = input(q["question"])
+elapsed = round(time.time() - start, 2)
+
+# Results saved to Excel with two sheets
+export_to_excel(name, grade, difficulty, score, df_results, feedback, f"{name}_results.xlsx")
+```
+
+<img width="981" height="322" alt="image" src="https://github.com/user-attachments/assets/4a5dc554-bcfa-4123-ba49-9eb517d8671c" />
 
 ---
 
