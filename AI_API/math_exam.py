@@ -51,6 +51,8 @@ response = client.chat.completions.create(
     }]
 )
 
+#QUESTIONS LOOP
+
 questions = ast.literal_eval(response.choices[0].message.content)
 correct = 0
 total_time = 0
@@ -112,7 +114,7 @@ df_results.to_csv(filename, index=False)
 def export_to_excel(name, grade, difficulty, score, df_results, feedback_text, filename):
     wb = Workbook()
 
-    # --- Sheet 1: Summary ---
+    # SHEET 1
     ws1 = wb.active
     ws1.title = "Summary"
     ws1["A1"] = "Name"
@@ -137,7 +139,7 @@ def export_to_excel(name, grade, difficulty, score, df_results, feedback_text, f
     ws1.column_dimensions["A"].width = 20
     ws1.column_dimensions["B"].width = 20
 
-    # --- Sheet 2: Results ---
+   # SHEET 2
     ws2 = wb.create_sheet("Results")
     headers = ["Question", "Student Answer", "Correct Answer", "Correct?"]
     colors = ["FF0000", "00FF00", "0000FF", "FFA500"]
@@ -166,8 +168,19 @@ def export_to_excel(name, grade, difficulty, score, df_results, feedback_text, f
 
 export_to_excel(name, grade, difficulty, score, df_results, feedback.choices[0].message.content, f"{name}_results.xlsx")
 
+# INSERT RESULTS INTO DATABASE
 cursor.execute("""
                INSERT INTO results (name, grade, difficulty, score, date, time_seconds)
                VALUES (?, ?, ?, ?, ?, ?)
                """, (name, grade, difficulty, score, datetime.now().strftime("%Y-%m-%d %H:%M"), round(total_time, 2)))
 conn.commit()
+
+# CREATE AND SHOW A LEADERBOARD
+
+cursor.execute("""
+               SELECT name, score, time_seconds FROM results ORDER BY score DESC
+"""
+)
+leaderboard = cursor.fetchall()
+for i, row in enumerate(leaderboard, start=1):
+    print(f"#{i}-{row[0]} - Score: {row[1]:.0%} - Time: {row[2]}s")
