@@ -178,10 +178,14 @@ conn.commit()
 # CREATE AND SHOW A LEADERBOARD
 
 cursor.execute("""
-               SELECT name, score, time_seconds FROM results ORDER BY score DESC
+               SELECT name, ROUND(score * 100) || '%' as score, time_seconds FROM results ORDER BY score DESC
 """
 )
 leaderboard = cursor.fetchall()
-for i, row in enumerate(leaderboard, start=1):
-    print(f"#{i}-{row[0]} - Score: {row[1]:.0%} - Time: {row[2]}s")
+df_leaderboard = pd.DataFrame(leaderboard, columns=["Name", "Score", "Time (s)"])
+print("\n LEADERBOARD:")
+print(df_leaderboard)
+
+# for i, row in enumerate(leaderboard, start=1):
+#     print(f"#{i}-{row[0]} - Score: {row[1]:.0%} - Time: {row[2]}s")
 conn.close()
