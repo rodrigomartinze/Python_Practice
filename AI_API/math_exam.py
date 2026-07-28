@@ -5,6 +5,7 @@ import time
 from groq import Groq
 from dotenv import load_dotenv
 import pandas as pd
+import sqlite3
 
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment
@@ -14,6 +15,23 @@ from datetime import datetime
 load_dotenv()
 
 client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
+
+conn = sqlite3.connect("math_exam.py")
+cursor = conn.cursor()
+
+cursor.execute("""
+               CREATE TABLE IF NOT EXISTS results (
+                   id INTEGER PRIMARY KEY,
+                   name TEXT,
+                   grade TEXT,
+                   difficulty TEXT,
+                   score REAL,
+                   date TEXT,
+                   time_seconds REAL
+               )
+"""
+)
+
 
 name = input("What's your name? ")
 grade = input("What's your grade level? ")
@@ -35,6 +53,7 @@ response = client.chat.completions.create(
 
 questions = ast.literal_eval(response.choices[0].message.content)
 correct = 0
+total_time = 0
 results = []
 for q in questions:
     while True:
@@ -42,6 +61,7 @@ for q in questions:
         answer = input(q["question"] + " ")
         end = time.time()
         elapsed = end - start
+        total_time += elapsed
         if not answer:
             print("You have to type something")
         else:
