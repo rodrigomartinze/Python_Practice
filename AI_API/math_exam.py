@@ -170,3 +170,4 @@ cursor.execute("""
                INSERT INTO results (name, grade, difficulty, score, date, time_seconds)
                VALUES (?, ?, ?, ?, ?, ?)
                """, (name, grade, difficulty, score, datetime.now().strftime("%Y-%m-%d %H:%M"), round(total_time, 2)))
+conn.commit()
