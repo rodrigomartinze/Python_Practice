@@ -16,7 +16,7 @@ load_dotenv()
 
 client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
-conn = sqlite3.connect("math_exam.py")
+conn = sqlite3.connect("math_exam.db")
 cursor = conn.cursor()
 
 cursor.execute("""
@@ -165,3 +165,8 @@ def export_to_excel(name, grade, difficulty, score, df_results, feedback_text, f
     print(f"\nResults saved to {filename}")
 
 export_to_excel(name, grade, difficulty, score, df_results, feedback.choices[0].message.content, f"{name}_results.xlsx")
+
+cursor.execute("""
+               INSERT INTO results (name, grade, difficulty, score, date, time_seconds)
+               VALUES (?, ?, ?, ?, ?, ?)
+               """, (name, grade, difficulty, score, datetime.now().strftime("%Y-%m-%d %H:%M"), round(total_time, 2)))
