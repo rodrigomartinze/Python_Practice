@@ -32,7 +32,7 @@ cursor.execute("""
 """
 )
 
-
+print(" Welcome to the AI Math Exam!")
 name = input("What's your name? ")
 grade = input("What's your grade level? ")
 
@@ -109,7 +109,7 @@ filename=f"{name}_results.csv"
 df_results.to_csv(filename, index=False) 
 
 
-#EXPORT RESULTS ASS EXCEL FILE
+#EXPORT RESULTS AS EXCEL FILE
 
 def export_to_excel(name, grade, difficulty, score, df_results, feedback_text, filename):
     wb = Workbook()
@@ -184,3 +184,4 @@ cursor.execute("""
 leaderboard = cursor.fetchall()
 for i, row in enumerate(leaderboard, start=1):
     print(f"#{i}-{row[0]} - Score: {row[1]:.0%} - Time: {row[2]}s")
+conn.close()
