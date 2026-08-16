@@ -1,6 +1,6 @@
 import sqlite3
 
-# CREATE DATABASE
+
 conn = sqlite3.connect("math_exam.db")
 cursor = conn.cursor()
 
