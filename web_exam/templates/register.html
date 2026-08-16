@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATH-AI — Register</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            margin: 0;
+        }
+
+        .left-panel {
+            background-color: #ffffff;
+            color: #000000;
+            min-height: 100vh;
+            padding: 48px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .math-bg {
+            position: absolute;
+            opacity: 0.08;
+            font-size: 1.5rem;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            place-items: center;
+            pointer-events: none;
+        }
+
+        .right-panel {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 48px 24px;
+        }
+
+        .form-control {
+            background: #111 !important;
+            border: 1px solid #333 !important;
+            color: white !important;
+            border-radius: 8px;
+        }
+
+        .form-control::placeholder {
+            color: #666 !important;
+        }
+
+        .form-control:focus {
+            border-color: #555 !important;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1) !important;
+        }
+
+        .btn-primary-custom {
+            background: white;
+            color: black;
+            border: none;
+            border-radius: 8px;
+            padding: 8px;
+            width: 100%;
+            font-weight: 500;
+        }
+
+        .btn-primary-custom:hover {
+            background: #ddd;
+        }
+
+        label {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .muted {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .pi-logo {
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container-fluid p-0">
+        <div class="row g-0">
+
+            <!-- LEFT PANEL -->
+            <div class="col-lg-6 left-panel d-none d-lg-flex flex-column justify-content-between">
+                <div class="math-bg">
+                    <span>∫ f(x) dx</span><span>a² + b² = c²</span><span>eⁱπ + 1 = 0</span>
+                    <span>∑ n²</span><span>√2</span><span>lim x→∞</span>
+                    <span>∂y/∂x</span><span>π ≈ 3.14</span><span>θ = 90°</span>
+                </div>
+                <a href="/" class="d-flex align-items-center gap-2 text-decoration-none text-dark position-relative">
+                    <span class="pi-logo" style="background:black; color:white;">π</span>
+                    <span class="fw-bold fs-5">MATH-AI</span>
+                </a>
+                <div class="position-relative">
+                    <h2 class="fw-bold" style="font-size: 2rem;">Every exam is unique,<br>generated just for you.</h2>
+                    <p class="text-secondary mt-3">Sharpen your skills with AI-powered questions and track your rank on
+                        the leaderboard.</p>
+                </div>
+                <p class="text-secondary position-relative" style="font-size: 0.85rem;">AI Math Exam · Learn faster</p>
+            </div>
+
+            <!-- RIGHT PANEL -->
+            <div class="col-lg-6 right-panel">
+                <div style="width: 100%; max-width: 360px;">
+
+                    <!-- Mobile logo -->
+                    <div class="d-lg-none mb-4">
+                        <a href="/" class="d-flex align-items-center gap-2 text-decoration-none text-white">
+                            <span class="pi-logo" style="background:white; color:black;">π</span>
+                            <span class="fw-bold">MATH-AI</span>
+                        </a>
+                    </div>
+
+                    <h1 class="fw-bold mb-1" style="font-size: 1.6rem;">Create your account</h1>
+                    <p class="muted mb-4">Join and start taking AI-generated math exams.</p>
+
+                    <!-- FLASH MESSAGES -->
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                    {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} py-2">{{ message }}</div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+
+                    <form method="POST" action="/register">
+                        <div class="mb-3">
+                            <label class="mb-1">Full name</label>
+                            <input type="text" name="name" class="form-control" placeholder="Ada Lovelace" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="mb-1">Email</label>
+                            <input type="email" name="email" class="form-control" placeholder="you@example.com"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="mb-1">Grade level</label>
+                            <input type="text" name="grade" class="form-control"
+                                placeholder="e.g. 9, high school, college" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="mb-1">Password</label>
+                            <input type="password" name="password" class="form-control"
+                                placeholder="At least 8 characters" minlength="8" required>
+                        </div>
+                        <button type="submit" class="btn-primary-custom mb-3">Create account</button>
+                        <p class="text-center muted">
+                            Already have an account?
+                            <a href="/login" class="text-white">Login</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

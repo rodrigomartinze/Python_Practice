@@ -4,66 +4,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI-MATH-EXAM</title>
+    <title>MATH-AI — AI Powered Math Exams</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+        }
+
+        .navbar {
+            background-color: #0a0a0a !important;
+            border-bottom: 1px solid #222;
+        }
+
+        .hero {
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+        }
+
+        .hero p {
+            color: #888;
+            font-size: 1.2rem;
+        }
+
+        .badge-pill {
+            border: 1px solid #333;
+            background: #111;
+            color: #aaa;
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 0.8rem;
+        }
+
+        .card-dark {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .icon-box {
+            background: #1a1a1a;
+            border-radius: 8px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .btn-outline-white {
+            border: 1px solid #444;
+            color: white;
+            background: transparent;
+            padding: 8px 20px;
+            border-radius: 8px;
+        }
+
+        .btn-outline-white:hover {
+            background: #222;
+            color: white;
+        }
+
+        footer {
+            border-top: 1px solid #222;
+            padding: 24px;
+            color: #666;
+        }
+
+        .math-symbols {
+            position: absolute;
+            opacity: 0.04;
+            font-size: 2rem;
+            pointer-events: none;
+        }
+    </style>
 </head>
-<style>
-    .carousel-item img {
-        height: 350px;
-        /* smaller height */
-        object-fit: cover;
-        object-position: center top;
-        /* show top of image */
-    }
-</style>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">MATH-AI</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Tests</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Leaderboard</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Options
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/login">Login</a></li>
-                            <li><a class="dropdown-item" href="#">Register</a></li>
-                            <li><a class="dropdown-item" href="#">Support</a></li>
-                        </ul>
-                    </li>
-                </ul>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand text-white fw-bold" href="/">
+                <span
+                    style="background:#fff; color:#000; padding:4px 10px; border-radius:6px; margin-right:8px;">π</span>
+                MATH-AI
+            </a>
+            <div class="d-flex gap-4 align-items-center ms-auto">
+                <a href="/" class="text-white-50 text-decoration-none">Home</a>
+                <a href="#tests" class="text-white-50 text-decoration-none">Tests</a>
+                <a href="#leaderboard" class="text-white-50 text-decoration-none">Leaderboard</a>
+                <a href="/login" class="text-white text-decoration-none">Login</a>
+                <a href="/register" class="btn btn-light btn-sm">Register</a>
             </div>
         </div>
     </nav>
-    <div class="carousel-item active">
-        <img src="{{ url_for('static', filename='leaderboard.jpg') }}" class="d-block w-100" alt="exam">
-        <div class="carousel-caption d-none d-md-block">
-            <h2>🎓 AI Math Exam</h2>
-            <p>Test your skills with AI-powered questions!</p>
-            <a href="/login" class="btn btn-light">Start Now!</a>
+
+    <!-- HERO -->
+    <section class="hero position-relative">
+        <span class="badge-pill">AI-generated · Adaptive · Fun</span>
+        <h1 class="mt-4">Master math with<br>exams built by AI</h1>
+        <p class="mt-3">Test your skills with AI-powered questions, follow your progress,<br>and climb the leaderboard.
+        </p>
+        <div class="mt-4 d-flex gap-3 justify-content-center">
+            <a href="/register" class="btn btn-light px-4">Start now</a>
+            <a href="/login" class="btn-outline-white">I already have an account</a>
         </div>
-    </div>
+    </section>
 
+    <!-- CARDS -->
+    <section id="tests" class="container pb-5">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card-dark">
+                    <div class="icon-box">🧠</div>
+                    <h5 class="fw-bold">AI Math Exam</h5>
+                    <p class="text-secondary">Test your skills with AI-powered questions tailored to your level.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-dark">
+                    <div class="icon-box">📈</div>
+                    <h5 class="fw-bold">Track your progress</h5>
+                    <p class="text-secondary">Review your ranking and climb the leaderboard as you improve.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-dark">
+                    <div class="icon-box">✨</div>
+                    <h5 class="fw-bold">Challenges by AI</h5>
+                    <p class="text-secondary">Every exam is unique — no two tests are ever the same.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    </div>
+    <!-- FOOTER -->
+    <footer class="text-center">
+        <div class="container d-flex justify-content-between">
+            <span>MATH-AI · AI Math Exam</span>
+            <div class="d-flex gap-3">
+                <a href="/login" class="text-secondary text-decoration-none">Login</a>
+                <a href="/register" class="text-secondary text-decoration-none">Register</a>
+            </div>
+        </div>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 
 </html>
