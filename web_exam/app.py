@@ -34,10 +34,13 @@ def register():
         conn = sqlite3.connect("math_exam.db")
         cursor = conn.cursor()
         cursor.execute("""
-                       INSERT INTO users (usename, name, email, password, grade)
-                       """
+                       INSERT INTO users (username, name, email, password, grade) VALUES (?, ?, ?, ?, ?)
+                       """, (username, name, email, hashed, grade)
         )
-        
+        conn.commit()
+        conn.close()
+        flash("Account created!, Please Log in.", "success")
+        return redirect("/login")
     return render_template("register.html")
 
 if __name__ == "__main__":
