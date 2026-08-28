@@ -1,7 +1,13 @@
+import os
+import bcrypt
+import sqlite3
 from flask import Flask, render_template, request, redirect, flash
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = "your-secret-key"  # needed for flash messages!
+app.secret_key = os.environ.get("SECRET_KEY")
 
 @app.route("/")
 def home():
@@ -19,10 +25,19 @@ def login():
 def register():
     if request.method == "POST":
         name = request.form["name"]
+        username = request.form["username"]
         email = request.form["email"]
         grade = request.form["grade"]
         password = request.form["password"]
-        # save to database next!
+        hashed =  bcrypt.hashpw(password.encode(), bcrypt.gensalt())
+        
+        conn = sqlite3.connect("math_exam.db")
+        cursor = conn.cursor()
+        cursor.execute("""
+                       INSERT INTO users (usename, name, email, password, grade)
+                       """
+        )
+        
     return render_template("register.html")
 
 if __name__ == "__main__":
